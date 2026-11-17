@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gathering Page | Neighborhood Books & Community — Coming Soon</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-cream: #F6F1E7;
+      --forest-green: #264034;
+      --warm-gold: #D49A42;
+      --terracotta: #B85D43;
+      
+      --forest-tint: rgba(38, 64, 52, 0.06);
+      --forest-border: rgba(38, 64, 52, 0.16);
+      --forest-muted: rgba(38, 64, 52, 0.75);
+      --gold-tint: rgba(212, 154, 66, 0.14);
+      
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--forest-green);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle paper texture effect */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(var(--forest-green) 0.6px, transparent 0.6px);
+      background-size: 28px 28px;
+      opacity: 0.04;
+      z-index: 0;
+    }
+
+    /* Decorative corner ornaments */
+    .corner-ornament {
+      position: fixed;
+      width: 70px;
+      height: 70px;
+      border: 1px solid var(--warm-gold);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .corner-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+    .corner-br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
+    /* Top Announcement Badge */
+    header {
+      position: relative;
+      z-index: 2;
+      padding: 32px 20px 0;
+      text-align: center;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 18px;
+      background: var(--gold-tint);
+      border: 1px solid rgba(212, 154, 66, 0.4);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest-green);
+    }
+
+    .pill-badge .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--terracotta);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(184, 93, 67, 0.6);
+      animation: pulse 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(184, 93, 67, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(184, 93, 67, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(184, 93, 67, 0);
+      }
+    }
+
+    /* Main Container */
+    main {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Logo Styling */
+    .brand-hero {
+      margin-top: 10px;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-wrapper {
+      max-width: 290px;
+      width: 85%;
+      margin: 0 auto;
+      transition: transform 0.4s ease;
+    }
+
+    .logo-wrapper:hover {
+      transform: translateY(-2px);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Flourish Divider */
+    .flourish {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 18px 0 28px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .flourish-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--warm-gold), transparent);
+    }
+
+    .flourish-icon {
+      color: var(--warm-gold);
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    /* Hero Text */
+    .hero-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      color: var(--forest-green);
+      margin-bottom: 18px;
+      max-width: 700px;
+    }
+
+    .hero-heading em {
+      font-style: italic;
+      color: var(--terracotta);
+      font-weight: 500;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+      color: var(--forest-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 820px;
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    @media (min-width: 640px) {
+      .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--forest-border);
+      border-radius: 14px;
+      padding: 26px 22px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      background: #FFFFFF;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px -8px rgba(38, 64, 52, 0.08);
+      border-color: rgba(212, 154, 66, 0.45);
+    }
+
+    .feature-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 11px;
+      background: var(--gold-tint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--warm-gold);
+    }
+
+    .feature-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--forest-green);
+      margin-bottom: 8px;
+    }
+
+    .feature-text {
+      font-size: 0.92rem;
+      color: var(--forest-muted);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--forest-border);
+      padding: 28px 20px 32px;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--forest-muted);
+    }
+
+    .footer-tagline {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--forest-green);
+      margin-bottom: 8px;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorative Corner Ornaments -->
+  <div class="corner-ornament corner-tl" aria-hidden="true"></div>
+  <div class="corner-ornament corner-tr" aria-hidden="true"></div>
+  <div class="corner-ornament corner-bl" aria-hidden="true"></div>
+  <div class="corner-ornament corner-br" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="pill-badge">
+      <span class="pulse-dot"></span>
+      Coming Soon
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Brand / Logo -->
+    <div class="brand-hero">
+      <div class="logo-wrapper">
+        <img src="logo.png" alt="Gathering Page" class="logo-img" onerror="this.style.display='none'; document.getElementById('text-fallback-logo').style.display='block';">
+        <!-- Graceful fallback if image is moved -->
+        <div id="text-fallback-logo" style="display:none; text-align:center; padding: 20px 0;">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#D49A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 8px;">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            <path d="M12 6v6"/>
+            <path d="M9 9h6"/>
+          </svg>
+          <h1 style="font-family: var(--font-serif); font-size: 2.4rem; color: var(--forest-green); line-height: 1.1;">Gathering Page</h1>
+        </div>
+      </div>
+
+      <div class="flourish" aria-hidden="true">
+        <span class="flourish-line"></span>
+        <span class="flourish-icon">&#10042;</span>
+        <span class="flourish-line"></span>
+      </div>
+
+      <h1 class="hero-heading">
+        Every story begins with an <em>open page</em>.
+      </h1>
+
+      <p class="hero-subtitle">
+        A neighborhood bookshop for great reads, quiet afternoons, and welcoming community conversations. We are thoughtfully preparing our shelves for you.
+      </p>
+    </div>
+
+    <!-- Feature Pillars -->
+    <section class="features-grid">
+      <!-- Card 1 -->
+      <article class="feature-card">
+        <div class="feature-icon-box" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">Curated Shelves</h3>
+        <p class="feature-text">
+          Handpicked fiction, timeless classics, poetry, and nonfiction selections chosen with care.
+        </p>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="feature-card">
+        <div class="feature-icon-box" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">Community Table</h3>
+        <p class="feature-text">
+          A shared space for book clubs, author discussions, and connecting with fellow readers.
+        </p>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="feature-card">
+        <div class="feature-icon-box" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+            <line x1="6" y1="1" x2="6" y2="4"></line>
+            <line x1="10" y1="1" x2="10" y2="4"></line>
+            <line x1="14" y1="1" x2="14" y2="4"></line>
+          </svg>
+        </div>
+        <h3 class="feature-title">The Reading Nook</h3>
+        <p class="feature-text">
+          Fresh coffee, warm teas, and comfortable corners designed for lingering with a good book.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-tagline">Books &bull; Coffee &bull; Community</p>
+    <p class="footer-copy">&copy; Gathering Page. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
